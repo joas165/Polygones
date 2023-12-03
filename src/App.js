@@ -1,25 +1,95 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState } from "react";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+  
+  const [SXCoordinates, updateSXCoordinates] = useState('');
+  const [sCoordinates, updateCoordinates] = useState([{x_coordinate:'', y_coordinate: ''}]);
+
+  const handleFormChange = (index, event) => {
+    let data = [...sCoordinates];
+    data[index][event.target.name] = event.target.value;
+    updateCoordinates(data);
+  }
+ 
+  const increaseEdges = () => {
+    let edge = {
+      x_coordinate: '',
+      y_coordinate: '',
+    }
+
+    updateCoordinates([...sCoordinates, edge]);
+  }
+  
+  const removeEdges = (index) => {
+    let data = [...sCoordinates];
+    data.splice(index, 1)
+    updateCoordinates(data)
 }
+  
+  
+  const submit = (event) => {
+    event.preventDefault();
+    let data = [...sCoordinates];
+    let outputX = data.map(element => element.x_coordinate);
+    let outputY = data.map(element => element.y_coordinate);
+    let output = [];
+    for (let i = 0; i < outputX.length;i++) { 
+      output.push(outputX[i]);
+      output.push(outputY[i]); 
+    }
+    updateCoordinates(sCoordinates);
+    updateSXCoordinates(output);
+    console.log(SXCoordinates);
+    console.log(sCoordinates);  
+    console.log(output);  
+  }
+
+  
+  return (
+    
+    <div className="App">
+       <form onSubmit={submit}>
+        {sCoordinates.map((form, index) => {
+          return (
+       <div key={index}>  
+            <input
+              name='x_coordinate'
+              placeholder='X-Coordinate'
+              value={form.x_coordinate}
+              onChange={event => handleFormChange(index,event)}
+              />
+            <input
+              name='y_coordinate'
+              placeholder='Y-Coordinate'
+              value={form.y_coordinate}
+              onChange={event => handleFormChange(index,event)} />
+            
+        </div>
+        )})}
+        </form>
+        <button
+        type="button"
+        onClick={submit}>
+        Draw</button>
+        <button onClick={increaseEdges}>Add Edges</button>
+        <button onClick={removeEdges}>Remove Edges</button>   
+      <svg width="500" height="500">
+       <polygon points={SXCoordinates} fill ="none" stroke = "red" />
+      </svg>  
+    </div>
+    );
+}
+
+const Xcoordinates = [10,10,30,50,60,60];
+const Ycoordinates = [100,50,10,40,30,60]; 
+
+let SYCoordinates = Xcoordinates.map(String);
+let SXCoordinates = Ycoordinates.map(String); 
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+
 
 export default App;
