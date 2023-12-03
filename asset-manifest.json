@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/joas165/Polygones/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/joas165/Polygones/static/js/main.ea3952a3.chunk.js",
+    "main.js.map": "/joas165/Polygones/static/js/main.ea3952a3.chunk.js.map",
+    "runtime-main.js": "/joas165/Polygones/static/js/runtime-main.1af07a4e.js",
+    "runtime-main.js.map": "/joas165/Polygones/static/js/runtime-main.1af07a4e.js.map",
+    "static/js/2.7f1fecf0.chunk.js": "/joas165/Polygones/static/js/2.7f1fecf0.chunk.js",
+    "static/js/2.7f1fecf0.chunk.js.map": "/joas165/Polygones/static/js/2.7f1fecf0.chunk.js.map",
+    "static/js/3.e3479bec.chunk.js": "/joas165/Polygones/static/js/3.e3479bec.chunk.js",
+    "static/js/3.e3479bec.chunk.js.map": "/joas165/Polygones/static/js/3.e3479bec.chunk.js.map",
+    "index.html": "/joas165/Polygones/index.html",
+    "precache-manifest.dd3bf8acac04062cf4e2912de2351dc4.js": "/joas165/Polygones/precache-manifest.dd3bf8acac04062cf4e2912de2351dc4.js",
+    "service-worker.js": "/joas165/Polygones/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/joas165/Polygones/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.7f1fecf0.chunk.js.LICENSE.txt": "/joas165/Polygones/static/js/2.7f1fecf0.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1af07a4e.js",
+    "static/js/2.7f1fecf0.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.ea3952a3.chunk.js"
+  ]
+}
