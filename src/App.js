@@ -49,32 +49,32 @@ const App = () => {
   
   return (
     <div className="App">
+       <button
+        type =  {"position:absolute"}
+        onClick={submit}>
+        Draw</button>
+        <button type = {"position:absolute"} onClick={increaseEdges}>Add Edges</button>
+        <button type = {"position:absolute"} onClick={removeEdges}>Remove Edges</button> 
        <form onSubmit={submit}>
         {sCoordinates.map((form, index) => {
           return (
        <div key={index}>  
             <input
               name='x_coordinate'
-              placeholder='X-Coordinate'
+              placeholder='X-Coordinate 0-1000'
               value={form.x_coordinate}
               onChange={event => handleFormChange(index,event)}
               />
             <input
               name='y_coordinate'
-              placeholder='Y-Coordinate'
+              placeholder='Y-Coordinate 0-600'
               value={form.y_coordinate}
               onChange={event => handleFormChange(index,event)} />
             
         </div>
         )})}
-        </form>
-        <button
-        type="button"
-        onClick={submit}>
-        Draw</button>
-        <button onClick={increaseEdges}>Add Edges</button>
-        <button onClick={removeEdges}>Remove Edges</button>   
-      <svg width="500" height="500">
+        </form>  
+      <svg width="1000" height="600">
        <polygon points={SXCoordinates} fill ="none" stroke = "red" />
       </svg>  
     </div>
