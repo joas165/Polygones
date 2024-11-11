@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { ComplexNumber, Coordinate } from '../types';
 import { convertPolarCoordinatesToPoints, convertCartesianCoordinatesToPoints } from '../utils/calculations'; // Import conversion function
-import PolygonDrawer from './PolygonDrawer';
+import CartesianCanvas from './CartesianCanvas'; // Import the CartesianCanvas component
 import Form from './Form';
 
 const App: React.FC = () => {
   const [polygonPoints, setPolygonPoints] = useState<string>("");
   const [complexNumbers, setComplexNumbers] = useState<ComplexNumber[]>([
-    {radius: "", angle: "" }
+    { radius: "", angle: "" }
   ]);
   const [coordinates, setCoordinates] = useState<Coordinate[]>([
     { x_coordinate: "", y_coordinate: "" }
@@ -15,6 +15,7 @@ const App: React.FC = () => {
   const [isPolarMode, setIsPolarMode] = useState<boolean>(false); // Toggle between modes
   const [isRadians, setIsRadians] = useState<boolean>(false); // Toggle between radians and degrees
 
+  // Handle changes in the coordinate form (for Cartesian mode)
   const handleFormChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     const updatedCoordinates = [...coordinates];
@@ -22,6 +23,7 @@ const App: React.FC = () => {
     setCoordinates(updatedCoordinates);
   };
 
+  // Handle changes in the complex number form (for Polar mode)
   const handleComplexNumberChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     const updatedComplexNumbers = [...complexNumbers];
@@ -29,27 +31,30 @@ const App: React.FC = () => {
     setComplexNumbers(updatedComplexNumbers);
   };
 
+  // Submit form and generate points
   const submit = (event: React.FormEvent) => {
     event.preventDefault();
-    
+
     let points = '';
     if (isPolarMode) {
       points = convertPolarCoordinatesToPoints(complexNumbers, isRadians);
     } else {
-      points = convertCartesianCoordinatesToPoints(coordinates) 
+      points = convertCartesianCoordinatesToPoints(coordinates);
     }
 
-    setPolygonPoints(points);
+    setPolygonPoints(points); // Set the generated points for rendering on the canvas
   };
 
+  // Add an edge (point) to the current form
   const addEdge = () => {
     if (isPolarMode) {
-      setComplexNumbers([...complexNumbers, {radius: "", angle: "" }]);
+      setComplexNumbers([...complexNumbers, { radius: "", angle: "" }]);
     } else {
       setCoordinates([...coordinates, { x_coordinate: "", y_coordinate: "" }]);
     }
   };
 
+  // Remove an edge (point) from the current form
   const removeEdge = () => {
     if (isPolarMode) {
       setComplexNumbers(complexNumbers.slice(0, -1));
@@ -58,16 +63,19 @@ const App: React.FC = () => {
     }
   };
 
+  // Toggle between Polar and Cartesian modes
   const toggleMode = () => {
     setIsPolarMode(!isPolarMode);
   };
 
+  // Toggle between radians and degrees for Polar coordinates
   const toggleAngleUnit = () => {
     setIsRadians(!isRadians);
   };
 
   return (
     <div style={{ display: 'flex' }}>
+      {/* Form Component */}
       <Form
         isPolarMode={isPolarMode}
         isRadians={isRadians}
@@ -81,7 +89,9 @@ const App: React.FC = () => {
         toggleMode={toggleMode}
         toggleAngleUnit={toggleAngleUnit}
       />
-      <PolygonDrawer polygonPoints={polygonPoints} isPolarMode={isPolarMode}/>
+
+      {/* CartesianCanvas Component: Pass polygonPoints and isPolarMode as props */}
+      <CartesianCanvas polygonPoints={polygonPoints} isPolarMode={isPolarMode} />
     </div>
   );
 };

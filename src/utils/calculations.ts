@@ -1,54 +1,63 @@
-
+// Convert Cartesian (x, y) coordinates to image (canvas) coordinates
 export const cartesianToImageCoordinates = (
   x: number, 
-  y: number, 
+  y: number,
 ): { x_image: number, y_image: number } => {
-  // Convert Cartesian x to image x by shifting origin to the center of the canvas
   const canvasWidth = 1000;
   const canvasHeight = 600;
-  
+
+  // Log input Cartesian coordinates
+  console.log(`Input Cartesian Coordinates: x: ${x}, y: ${y}`);
+
+  // Shift origin to the center of the canvas
   const x_image = x + canvasWidth / 2;
-  
-  // Convert Cartesian y to image y by flipping the y-axis and shifting origin to center
   const y_image = canvasHeight / 2 - y;
-  
+
+  // Log the image coordinates after conversion
+  console.log(`Converted Image Coordinates: x_image: ${x_image}, y_image: ${y_image}`);
+
   return { x_image, y_image };
 };
 
-
-// Example of using the function:
-const { x_image, y_image} = cartesianToImageCoordinates(100, 200);
-console.log(`x_image: ${x_image}, y_image: ${y_image}`); // Correct access
-
-
+// Convert polar coordinates (radius, angle) to Cartesian (x, y)
 export const polarToCartesian = (radius: number, angle: number): { x: number, y: number } => {
+  // Log input polar coordinates
+  console.log(`Input Polar Coordinates: radius: ${radius}, angle: ${angle}`);
+
   const x = radius * Math.cos(angle);
   const y = radius * Math.sin(angle);
+
+  // Log the resulting Cartesian coordinates
+  console.log(`Converted to Cartesian Coordinates: x: ${x}, y: ${y}`);
+
   return { x, y };
 };
 
-// Function to handle angle conversion based on the unit (radians or degrees)
+// Convert angle based on whether it is in radians or degrees
 export const convertAngle = (angle: number, isRadians: boolean): number => {
   if (!isRadians) {
     // Convert from degrees to radians
+    console.log(`Converting angle from degrees to radians: ${angle}°`);
     return (angle * Math.PI) / 180;
   }
-  return angle; // Already in radians
+
+  // Log angle in radians if not converted
+  console.log(`Angle is already in radians: ${angle}`);
+  return angle; // Angle is already in radians
 };
 
-// Function to scale the radius based on the complex number mode
+// Scale polar radius (you can adjust this scale factor if necessary)
 export const scalePolarCoordinates = (radius: string): number => {
-  const scaleFactor = 1;
-  return parseFloat(radius) * scaleFactor;
+  const scaleFactor = 1;  // You can adjust this scale factor
+  const scaledRadius = parseFloat(radius) * scaleFactor;
+
+  // Log the scaled polar radius
+  console.log(`Scaled Polar Radius: ${scaledRadius}`);
+
+  return scaledRadius;
 };
 
-// Function to handle Cartesian conversion when in Cartesian mode
-export const cartesianToString = (coordinates: { x_coordinate: string, y_coordinate: string }[]) => {
-  return coordinates.map(coord => `${coord.x_coordinate},${coord.y_coordinate}`).join(' ');
-};
-
-// Function to convert all polar coordinates and return points
-
+// Convert all polar coordinates into a string of points
 export const convertPolarCoordinatesToPoints = (
   complexNumbers: { radius: string, angle: string }[], 
   isRadians: boolean
@@ -61,20 +70,18 @@ export const convertPolarCoordinatesToPoints = (
 
     const radius = scalePolarCoordinates(complex.radius);
 
-    // Log the scaled radius
-    console.log('Scaled radius:', radius);
-
+    // Convert angle to radians if needed
     let angle = parseFloat(complex.angle);
     angle = convertAngle(angle, isRadians);
 
-    // Log the angle in radians
-    console.log('Converted angle in radians:', angle);
+    // Convert polar to Cartesian coordinates
+    const { x, y } = polarToCartesian(radius, angle);
 
-    const { x, y } = polarToCartesian(radius,angle);
-    const {x_image, y_image} = cartesianToImageCoordinates(x,y)
+    // Convert Cartesian to image coordinates (adjust to canvas)
+    const { x_image, y_image } = cartesianToImageCoordinates(x, y);
 
-    // Log the Cartesian (x, y) coordinates
-    console.log(`Converted to image coordinates: x: ${x_image}, y: ${y_image}`);
+    // Log the final point in image coordinates
+    console.log(`Final point: x_image: ${x_image}, y_image: ${y_image}`);
 
     points += `${x_image.toString()},${y_image.toString()} `;
   });
@@ -82,25 +89,27 @@ export const convertPolarCoordinatesToPoints = (
   return points.trim();
 };
 
+// Convert all Cartesian coordinates into a string of points
 export const convertCartesianCoordinatesToPoints = (
   coordinates: { x_coordinate: string, y_coordinate: string }[], 
- ): string => {
+): string => {
   let points = '';
 
-  coordinates.forEach((coordinates) => {
-    // Log the current complex number being processed
-  
-    let x = parseFloat(coordinates.x_coordinate);
-    let y = parseFloat(coordinates.y_coordinate);
+  coordinates.forEach((coord) => {
+    let x = parseFloat(coord.x_coordinate);
+    let y = parseFloat(coord.y_coordinate);
 
-    const {x_image, y_image} = cartesianToImageCoordinates(x,y)
+    // Log input Cartesian coordinates
+    console.log(`Input Cartesian Coordinates: x: ${x}, y: ${y}`);
 
-    // Log the Cartesian (x, y) coordinates
-    console.log(`Converted to image coordinates: x: ${x_image}, y: ${y_image}`);
+    // Convert Cartesian to image coordinates (adjust to canvas)
+    const { x_image, y_image } = cartesianToImageCoordinates(x, y);
+
+    // Log the final point in image coordinates
+    console.log(`Converted to Image Coordinates: x_image: ${x_image}, y_image: ${y_image}`);
 
     points += `${x_image.toString()},${y_image.toString()} `;
   });
 
   return points.trim();
 };
-
