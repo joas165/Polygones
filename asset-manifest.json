@@ -1,24 +1,12 @@
 {
   "files": {
-    "main.css": "/Polygones/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/Polygones/static/js/main.ea3952a3.chunk.js",
-    "main.js.map": "/Polygones/static/js/main.ea3952a3.chunk.js.map",
-    "runtime-main.js": "/Polygones/static/js/runtime-main.550a4de6.js",
-    "runtime-main.js.map": "/Polygones/static/js/runtime-main.550a4de6.js.map",
-    "static/js/2.7f1fecf0.chunk.js": "/Polygones/static/js/2.7f1fecf0.chunk.js",
-    "static/js/2.7f1fecf0.chunk.js.map": "/Polygones/static/js/2.7f1fecf0.chunk.js.map",
-    "static/js/3.e3479bec.chunk.js": "/Polygones/static/js/3.e3479bec.chunk.js",
-    "static/js/3.e3479bec.chunk.js.map": "/Polygones/static/js/3.e3479bec.chunk.js.map",
+    "main.js": "/Polygones/static/js/main.1c8dc1ad.js",
+    "static/js/453.5438ec22.chunk.js": "/Polygones/static/js/453.5438ec22.chunk.js",
     "index.html": "/Polygones/index.html",
-    "precache-manifest.b5b8ae4d062bd5b88630e24f9ed261d1.js": "/Polygones/precache-manifest.b5b8ae4d062bd5b88630e24f9ed261d1.js",
-    "service-worker.js": "/Polygones/service-worker.js",
-    "static/css/main.5ecd60fb.chunk.css.map": "/Polygones/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.7f1fecf0.chunk.js.LICENSE.txt": "/Polygones/static/js/2.7f1fecf0.chunk.js.LICENSE.txt"
+    "main.1c8dc1ad.js.map": "/Polygones/static/js/main.1c8dc1ad.js.map",
+    "453.5438ec22.chunk.js.map": "/Polygones/static/js/453.5438ec22.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.550a4de6.js",
-    "static/js/2.7f1fecf0.chunk.js",
-    "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.ea3952a3.chunk.js"
+    "static/js/main.1c8dc1ad.js"
   ]
 }
