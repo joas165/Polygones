@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 
 // Non-null assertion operator to tell TypeScript the root element exists
